@@ -39,16 +39,14 @@
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-             <Button fx:id="skenirajUlazBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Skeniraj Ulaz" textAlignment="CENTER" />
-             <Button fx:id="skenirajIzlazBtn" mnemonicParsing="false" text="Skeniraj Izlaz" GridPane.rowIndex="1" />
-             <Button fx:id="pregledSlobodnihMjestaBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Pregled slobodnih mjesta" textAlignment="CENTER" GridPane.rowIndex="2" />
-             <Button fx:id="izlazBtn" mnemonicParsing="false" text="Izlaz" GridPane.rowIndex="3" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Skeniraj Ulaz" textAlignment="CENTER" />
+            <Button mnemonicParsing="false" text="Skeniraj Izlaz" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" text="Izlaz" GridPane.rowIndex="2" />
          </children>
          <GridPane.margin>
             <Insets />

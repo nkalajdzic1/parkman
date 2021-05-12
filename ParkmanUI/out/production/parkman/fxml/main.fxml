@@ -47,8 +47,8 @@
          <children>
              <Button fx:id="skenirajUlazBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Skeniraj Ulaz" textAlignment="CENTER" />
              <Button fx:id="skenirajIzlazBtn" mnemonicParsing="false" text="Skeniraj Izlaz" GridPane.rowIndex="1" />
-             <Button fx:id="pregledSlobodnihMjestaBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Pregled slobodnih mjesta" textAlignment="CENTER" GridPane.rowIndex="2" />
-             <Button fx:id="izlazBtn" mnemonicParsing="false" text="Izlaz" GridPane.rowIndex="3" />
+             <Button fx:id="pregledSlobodnihMjestaBtn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="SPregled slobodnih mjesta" textAlignment="CENTER" />
+             <Button fx:id="izlazBtn" mnemonicParsing="false" text="Izlaz" GridPane.rowIndex="2" />
          </children>
          <GridPane.margin>
             <Insets />
