@@ -71,7 +71,8 @@ lbl = Label(window, text="Select a photo from which to extract the licence plate
 lbl.grid(column=0, row=0)
 
 btn = Button(window, text="Select photo", command=clicked)
+btn = Button(window, text="TEST", command=clicked)
 
 btn.grid(column=1, row=0)
-
+btn.grid(column=2, row=0)
 window.mainloop()
