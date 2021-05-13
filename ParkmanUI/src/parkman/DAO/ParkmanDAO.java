@@ -24,7 +24,7 @@ public class ParkmanDAO {
 
     private ParkmanDAO() {
         try {
-            conn = DriverManager.getConnection("jdbc:sqlite:identifier.sqlite");
+            conn = DriverManager.getConnection("jdbc:sqlite:parkmanDb.sqlite");
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -30,7 +30,7 @@ def detect_plate(image_url):
     # this gets all the connected regions and groups them together
     label_image = measure.label(binary_car_image)
 
-    print(label_image.shape)  # width of car img
+    #print(label_image.shape)  # width of car img
 
     # getting the maximum width, height and minimum width and height that a license plate can be
     plate_dimensions = (
