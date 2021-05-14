@@ -52,9 +52,10 @@ public class MainController implements Initializable {
     public void scanInBtnAction() throws IOException {
         Webcam webcam = Webcam.getDefault();
         webcam.open();
+        System.out.println(webcam.getImageBytes().remaining());
         dao.addInitialTransaction(
             new Transaction(
-                    new byte[webcam.getImageBytes().remaining()],
+                    webcam.getImageBytes().array(),
                     new Timestamp(System.currentTimeMillis()),
                     2.4f,
                 "test"
