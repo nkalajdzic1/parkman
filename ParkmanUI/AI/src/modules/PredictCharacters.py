@@ -1,6 +1,6 @@
 import pickle
 
-import SegmentCharacters as SegmentCharacters;
+import modules.SegmentCharacters as SegmentCharacters;
 
 
 def predict_license_plate_number(image_url):

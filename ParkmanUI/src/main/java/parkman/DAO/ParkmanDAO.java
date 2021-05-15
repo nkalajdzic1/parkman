@@ -27,7 +27,7 @@ public class ParkmanDAO {
 
     private ParkmanDAO() {
         try {
-            conn = DriverManager.getConnection("jdbc:sqlite:parkmanDb.sqlite");
+            conn = DriverManager.getConnection("jdbc:sqlite:db/parkmanDb.sqlite");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -45,7 +45,7 @@ public class ParkmanDAO {
         try {
             // Query
             selectTransactionQuery = conn.prepareStatement("SELECT * FROM main.\"transaction\";");
-            createInitialTransactionQuery = conn.prepareStatement("INSERT INTO \"transaction\" (carPhoto, platePhoto, plateNumber, entranceTimestamp, exitTimestamp, pricePerHour, employeeName) values (?, null, null, ?, null, ?, ?);");
+            createInitialTransactionQuery = conn.prepareStatement("INSERT INTO \"transaction\" (carPhoto, entranceTimestamp, pricePerHour, employeeName) values (?, ?,  ?, ?);");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -94,13 +94,17 @@ public class ParkmanDAO {
 
     public int addInitialTransaction(Transaction transaction) {
         try {
-            createInitialTransactionQuery.setBlob(1, new ByteArrayInputStream(transaction.getCarPicture()));
-            createInitialTransactionQuery.setTimestamp(4, transaction.getEntranceTimestamp());
-            createInitialTransactionQuery.setFloat(6, transaction.getPricePerHour());
-            createInitialTransactionQuery.setString(7, transaction.getEmployeeName());
-            createInitialTransactionQuery.executeUpdate();
+            createInitialTransactionQuery.setBytes(1, transaction.getCarPicture());
+            createInitialTransactionQuery.setTimestamp(2, transaction.getEntranceTimestamp());
+            createInitialTransactionQuery.setFloat(3, transaction.getPricePerHour());
+            createInitialTransactionQuery.setString(4, transaction.getEmployeeName());
+            createInitialTransactionQuery.execute();
 
-            return createInitialTransactionQuery.getGeneratedKeys().getInt("id");
+            ResultSet rs = createInitialTransactionQuery.getGeneratedKeys();
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();

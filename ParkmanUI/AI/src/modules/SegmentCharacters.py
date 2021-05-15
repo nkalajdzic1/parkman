@@ -8,14 +8,15 @@ from skimage.measure import regionprops
 import matplotlib.patches as patches
 import matplotlib.pyplot as plt
 
-import DetectPlate
+from modules.DetectPlate import detect_plate
 
 
 def segment_characters(image_url):
     characters_array = []
     column_list_array = []
     possible_final_images = []
-    for lp in DetectPlate.detect_plate(image_url):
+
+    for lp in detect_plate(open(image_url, 'rb')):
         license_plate = np.invert(lp)
 
         labelled_plate = measure.label(license_plate)

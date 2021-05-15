@@ -12,7 +12,7 @@ def create_connection(db_file):
     try:
         conn = sqlite3.connect(db_file)
     except Error as e:
-        print(e)
+        print("CONN ERR:" + e)
 
     return conn
 
@@ -22,18 +22,17 @@ def new_transaction(dbPath, plate):
     sql = ''' INSERT INTO "transaction" (carPhoto, platePhoto, plateNumber, entranceTimestamp, exitTimestamp, pricePerHour, employeeName)
     values (?, ?, ?, ?, ?, ?, ?); '''
 
-    data_tuple = (
-        convertToBinaryData(plate.carPhotoPath), 
-        convertToBinaryData(plate.platePhotoPath), 
-        plate.plateNumber, 
-        plate.enteranceTimestamp, 
-        plate.exitTimestamp, 
-        plate.pricePerHour, 
-        plate.employeeName
-    ) 
-    
     cur = conn.cursor()
-    cur.execute(sql, data_tuple)
+    cur.execute(sql, plate)
     conn.commit()
 
     return cur.lastrowid
+
+def get_transaction_car_photo(dbPath, id):
+    conn = create_connection(dbPath)
+
+    sql = ''' SELECT * FROM "transaction" WHERE id == ''' + id
+
+    cur = conn.cursor()
+
+    return cur.execute(sql).fetchone()[1]
