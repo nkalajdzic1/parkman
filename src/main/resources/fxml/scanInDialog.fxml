@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="259.0" minHeight="10.0" prefHeight="259.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="119.0" minHeight="10.0" prefHeight="41.0" valignment="CENTER" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+       <ImageView fx:id="testPictureFrame" fitHeight="262.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" />
+       <Button fx:id="testPictureBtn" mnemonicParsing="false" text="Pick Test Picture" GridPane.rowIndex="1" onAction="#testPictureBtnAction"/>
+       <ImageView fitHeight="258.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+       <Button mnemonicParsing="false" text="Use Webcam Feed" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+   </children>
+</GridPane>

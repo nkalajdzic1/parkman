@@ -12,13 +12,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import parkman.DAO.ParkmanDAO;
 
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.scene.layout.VBox;
 import javafx.fxml.Initializable;
 import parkman.Models.Transaction;
+
+import static javafx.scene.layout.Region.USE_COMPUTED_SIZE;
 
 
 public class MainController implements Initializable {
@@ -31,6 +36,11 @@ public class MainController implements Initializable {
     public Button scanOutBtn;
     public Button overviewBtn;
     public Button exitBtn;
+
+    public enum ScanInAction {
+        TEST,
+        WEBCAM
+    }
 
     public MainController() {
         dao = ParkmanDAO.getInstance();
@@ -55,9 +65,28 @@ public class MainController implements Initializable {
     }
 
     public void scanInBtnAction() {
+        Stage stage = new Stage();
+        Parent root = null;
+
         try {
-            scanController.AddTransaction();
-        } catch (Exception e) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/scanInDialog.fxml"));
+            ScanInDialogController scanInDialogController = new ScanInDialogController();
+            loader.setController(scanInDialogController);
+            root = loader.load();
+            stage.setTitle("Select Input Source");
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.setResizable(true);
+            stage.show();
+
+            stage.setOnHiding(event -> {
+                File imageFile = scanInDialogController.getImageFile();
+                try {
+                    scanController.AddTransaction(imageFile);
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
