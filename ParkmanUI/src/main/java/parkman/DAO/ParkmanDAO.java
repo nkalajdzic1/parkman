@@ -1,20 +1,15 @@
 package parkman.DAO;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import parkman.Models.Transaction;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ParkmanDAO {
     private static ParkmanDAO instance;
     private Connection conn;
 
-    private PreparedStatement selectTransactionQuery, createInitialTransactionQuery;
+    private PreparedStatement selectTransactionQuery, createInitialTransactionQuery, updatePlateByIdQuery;
 
     public static ParkmanDAO getInstance() {
         if (instance == null) instance = new ParkmanDAO();
@@ -45,7 +40,8 @@ public class ParkmanDAO {
         try {
             // Query
             selectTransactionQuery = conn.prepareStatement("SELECT * FROM main.\"transaction\";");
-            createInitialTransactionQuery = conn.prepareStatement("INSERT INTO \"transaction\" (carPhoto, entranceTimestamp, pricePerHour, employeeName) values (?, ?,  ?, ?);");
+            createInitialTransactionQuery = conn.prepareStatement("INSERT INTO \"transaction\" (carPhoto, entranceTimestamp, pricePerHour, parkingSpot) values (?, ?,  ?, ?);");
+            updatePlateByIdQuery = conn.prepareStatement("UPDATE main.\"transaction\" SET plateNumber = ? WHERE id = ?");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -97,19 +93,36 @@ public class ParkmanDAO {
             createInitialTransactionQuery.setBytes(1, transaction.getCarPicture());
             createInitialTransactionQuery.setTimestamp(2, transaction.getEntranceTimestamp());
             createInitialTransactionQuery.setFloat(3, transaction.getPricePerHour());
-            createInitialTransactionQuery.setString(4, transaction.getEmployeeName());
+            createInitialTransactionQuery.setString(4, transaction.getParkingSpot());
             createInitialTransactionQuery.execute();
 
             ResultSet rs = createInitialTransactionQuery.getGeneratedKeys();
 
             if (rs.next()) {
                 return rs.getInt(1);
+            } else {
+                return -1;
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }
 
-        return -1;
+            return -1;
+        }
+    }
+
+    public boolean updatePlateById(int insertId, String plateNumber) {
+        try {
+            updatePlateByIdQuery.setString(1, plateNumber);
+            updatePlateByIdQuery.setInt(2, insertId);
+
+            updatePlateByIdQuery.execute();
+
+            return true;
+        } catch(SQLException e) {
+            e.printStackTrace();
+
+            return false;
+        }
     }
 }

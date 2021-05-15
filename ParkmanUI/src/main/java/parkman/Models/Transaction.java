@@ -11,7 +11,7 @@ public class Transaction {
     private Timestamp entranceTimestamp;
     private Timestamp exitTimestamp;
     private float pricePerHour;
-    private String employeeName;
+    private String parkingSpot;
 
     private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 
@@ -22,14 +22,14 @@ public class Transaction {
         this.plateNumber = plateNumber;
         this.entranceTimestamp = entranceTimestamp;
         this.exitTimestamp = exitTimestamp;
-        this.employeeName = employeeName;
+        this.parkingSpot = employeeName;
         this.pricePerHour = pricePerHour;
     }
 
     public Transaction(byte[] carPicture, Timestamp entranceTimestamp, float pricePerHour, String employeeName) {
         this.carPicture = carPicture;
         this.entranceTimestamp = entranceTimestamp;
-        this.employeeName = employeeName;
+        this.parkingSpot = employeeName;
         this.pricePerHour = pricePerHour;
     }
 
@@ -89,12 +89,12 @@ public class Transaction {
 
     public void setPricePerHour(float pricePerHour) { this.pricePerHour = pricePerHour; }
 
-    public String getEmployeeName() {
-        return employeeName;
+    public String getParkingSpot() {
+        return parkingSpot;
     }
 
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
+    public void setParkingSpot(String parkingSpot) {
+        this.parkingSpot = parkingSpot;
     }
 
     @Override
@@ -106,7 +106,7 @@ public class Transaction {
                 ", plateNumber='" + plateNumber + '\'' +
                 ", entranceTmestamp=" + entranceTimestamp +
                 ", exitTimestamp=" + exitTimestamp +
-                ", employeeName='" + employeeName + '\'' +
+                ", employeeName='" + parkingSpot + '\'' +
                 '}';
     }
 }
