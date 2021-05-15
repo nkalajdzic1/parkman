@@ -9,7 +9,10 @@ import java.util.ArrayList;
 import com.github.sarxos.webcam.Webcam;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import parkman.DAO.ParkmanDAO;
 
 import java.util.ResourceBundle;
@@ -63,8 +66,15 @@ public class MainController implements Initializable {
 
     }
 
-    public void overviewBtnAction() {
-
+    public void overviewBtnAction() throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/overview.fxml"));
+        OverviewController overviewController = new OverviewController();
+        Parent root  = loader.load();
+        stage.setTitle("Overview");
+        stage.setScene(new Scene(root, 900, 500));
+        stage.setResizable(false);
+        stage.show();
     }
 
     public void exitBtnAction() {

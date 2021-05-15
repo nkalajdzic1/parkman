@@ -20,7 +20,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="parkman" target="14" />
+      <module name="parkman" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
