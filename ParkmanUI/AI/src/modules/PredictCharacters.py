@@ -1,11 +1,13 @@
+import os
 import pickle
 
 import modules.SegmentCharacters as SegmentCharacters;
 
+from definitions import ROOT_DIR
 
 def predict_license_plate_number(image_url):
     #print("Loading model")
-    filename = './finalized_model.sav'
+    filename = ROOT_DIR + '/finalized_model.sav'
     model = pickle.load(open(filename, 'rb'))
 
     #print('Model loaded. Predicting characters of number plate')

@@ -5,6 +5,8 @@ from sklearn.model_selection import cross_val_score
 from skimage.io import imread
 from skimage.filters import threshold_mean
 
+from definitions import ROOT_DIR
+
 def train():
     letters = [
                 '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D',
@@ -70,6 +72,6 @@ def train():
 
     import pickle
     print("model trained.saving model..")
-    filename = './finalized_model.sav'
+    filename = ROOT_DIR + '/finalized_model.sav'
     pickle.dump(svc_model, open(filename, 'wb'))
     print("model saved")
