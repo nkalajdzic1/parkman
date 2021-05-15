@@ -45,7 +45,7 @@ public class ParkmanDAO {
         try {
             // Query
             selectTransactionQuery = conn.prepareStatement("SELECT * FROM main.\"transaction\";");
-            createInitialTransactionQuery = conn.prepareStatement("INSERT INTO \"transaction\" (carPhoto, entranceTimestamp, pricePerHour, employeeName) values (?, ?,  ?, ?);");
+            createInitialTransactionQuery = conn.prepareStatement("INSERT INTO \"transaction\" (carPhoto, entranceTimestamp, pricePerHour, parkingSpot) values (?, ?,  ?, ?);");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -97,7 +97,7 @@ public class ParkmanDAO {
             createInitialTransactionQuery.setBytes(1, transaction.getCarPicture());
             createInitialTransactionQuery.setTimestamp(2, transaction.getEntranceTimestamp());
             createInitialTransactionQuery.setFloat(3, transaction.getPricePerHour());
-            createInitialTransactionQuery.setString(4, transaction.getEmployeeName());
+            createInitialTransactionQuery.setString(4, transaction.getParkingSpot());
             createInitialTransactionQuery.execute();
 
             ResultSet rs = createInitialTransactionQuery.getGeneratedKeys();

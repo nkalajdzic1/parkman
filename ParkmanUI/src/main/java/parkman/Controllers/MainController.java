@@ -109,7 +109,7 @@ public class MainController implements Initializable {
         OverviewController overviewController = new OverviewController();
         Parent root  = loader.load();
         stage.setTitle("Overview");
-        stage.setScene(new Scene(root, 900, 500));
+        stage.setScene(new Scene(root, 500, 500));
         stage.setResizable(false);
         stage.show();
     }
