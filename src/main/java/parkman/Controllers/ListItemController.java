@@ -36,7 +36,7 @@ public class ListItemController {
         enteanceDateLabel.setText(transaction.getFormattedEnteranceTimestamp());
         exitDateLabel.setText(transaction.getExitTimestamp() == null ? "ACTIVE" : transaction.getFormattedExitTimestamp());
         parkingSportLabel.setText(transaction.getParkingSpot());
-        totalPriceLabel.setText(transaction.getTotalPrice() == -1 ? "-" : transaction.getTotalPrice() + "€");
+        totalPriceLabel.setText(transaction.getTotalPrice() == -1 ? "-" : transaction.getTotalPrice() + " €");
     }
 
     public void getPlate() {

@@ -28,14 +28,14 @@ public class Transaction {
         this.entranceTimestamp = entranceTimestamp;
         this.exitTimestamp = exitTimestamp;
         this.parkingSpot = parkingSpot;
-        this.pricePerHour = pricePerHour;
+        this.pricePerHour = 2.0f;
     }
 
     public Transaction(byte[] carPicture, Timestamp entranceTimestamp, float pricePerHour, String parkingSpot) {
         this.carPicture = carPicture;
         this.entranceTimestamp = entranceTimestamp;
         this.parkingSpot = parkingSpot;
-        this.pricePerHour = pricePerHour;
+        this.pricePerHour = 2.0f;
     }
 
     public int getId() {

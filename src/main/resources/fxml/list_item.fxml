@@ -20,10 +20,10 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="idLabel" alignment="CENTER" contentDisplay="CENTER" text="#ID" GridPane.halignment="CENTER" />
-            <Label fx:id="plateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="92.0" text="A12-T-412" GridPane.columnIndex="1" />
-            <Label fx:id="enteanceDateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="173.0" text="2021-05-13 01:58:10" textAlignment="CENTER" GridPane.columnIndex="2" />
-            <Label fx:id="exitDateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="182.0" text="2021-05-13 01:58:10" GridPane.columnIndex="3" />
+            <Label fx:id="idLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="117.0" text="#ID" GridPane.halignment="CENTER" />
+            <Label fx:id="plateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="72.0" prefWidth="80.0" text="A12-T-412" GridPane.columnIndex="1" />
+            <Label fx:id="enteanceDateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="89.0" prefWidth="152.0" text="2021-05-13 01:58:10" textAlignment="CENTER" GridPane.columnIndex="2" />
+            <Label fx:id="exitDateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="52.0" prefWidth="155.0" text="2021-05-13 01:58:10" GridPane.columnIndex="3" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0" GridPane.columnIndex="6">
                <children>
                   <Button fx:id="btnPlate" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#getPlate" text="Plate" />

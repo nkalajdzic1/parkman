@@ -101,7 +101,7 @@ public class MainController implements Initializable {
             ScanOutDialogController scanOutDialogController = new ScanOutDialogController(this);
             loader.setController(scanOutDialogController);
             root = loader.load();
-            stage.setTitle("Select Input Source");
+            stage.setTitle("Select Output Source");
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.setResizable(false);
             stage.showAndWait();
