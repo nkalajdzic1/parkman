@@ -30,18 +30,8 @@ public class ParkmanDAO {
         }
 
         try {
-            selectTransactionQuery = conn.prepareStatement("SELECT * FROM main.\"transaction\";");
-        } catch (SQLException e) {
-            try {
-                selectTransactionQuery = conn.prepareStatement("SELECT * FROM main.\"transaction\";");
-            } catch (SQLException e1) {
-                e1.printStackTrace();
-            }
-        }
-
-        try {
             // Query
-            selectTransactionQuery = conn.prepareStatement("SELECT * FROM main.\"transaction\";");
+            selectTransactionQuery = conn.prepareStatement("SELECT * FROM main.\"transaction\" ORDER BY entranceTimestamp DESC;");
             createInitialTransactionQuery = conn.prepareStatement("INSERT INTO \"transaction\" (carPhoto, entranceTimestamp, pricePerHour, parkingSpot) values (?, ?,  ?, ?);");
             updatePlateByIdQuery = conn.prepareStatement("UPDATE main.\"transaction\" SET plateNumber = ? WHERE id = ?");
             selectPlateImageByIdQuery = conn.prepareStatement("SELECT platePhoto FROM main. \"transaction\" WHERE id = ?");
