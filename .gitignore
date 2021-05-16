@@ -84,5 +84,5 @@ crashlytics-build.properties
 /AI/src/modules/__pycache/
 
 #Jython
-/.jython_cache
+/.jython_cache/
       

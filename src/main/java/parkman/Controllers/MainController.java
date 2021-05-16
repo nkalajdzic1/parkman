@@ -86,7 +86,7 @@ public class MainController implements Initializable {
                     } catch(Exception e) {
                         e.printStackTrace();
                     }
-                }).run();
+                }).start();
             });
         } catch (IOException e) {
             e.printStackTrace();
