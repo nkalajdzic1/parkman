@@ -1,23 +1,17 @@
 package parkman.Controllers;
 
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
-import com.github.sarxos.webcam.Webcam;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import parkman.DAO.ParkmanDAO;
 
-import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.scene.layout.VBox;
 import javafx.fxml.Initializable;
@@ -49,7 +43,12 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.ListTransactions();
+    }
+
+    private void ListTransactions() {
         tranasctions = dao.getTransactions();
+        itemHolder.getChildren().clear();
 
         for(Transaction transaction : tranasctions) {
             try {
@@ -69,7 +68,7 @@ public class MainController implements Initializable {
         Parent root = null;
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/scanInDialog.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/scanDialog.fxml"));
             ScanInDialogController scanInDialogController = new ScanInDialogController();
             loader.setController(scanInDialogController);
             root = loader.load();
@@ -79,14 +78,13 @@ public class MainController implements Initializable {
             stage.show();
 
             stage.setOnHiding(event -> {
-                new Thread(() -> {
-                    File imageFile = scanInDialogController.getImageFile();
-                    try {
-                        scanController.AddTransaction(imageFile);
-                    } catch(Exception e) {
-                        e.printStackTrace();
-                    }
-                }).start();
+                File imageFile = scanInDialogController.getImageFile();
+                try {
+                    scanController.AddTransaction(imageFile);
+                    this.ListTransactions();
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
             });
         } catch (IOException e) {
             e.printStackTrace();
@@ -94,7 +92,31 @@ public class MainController implements Initializable {
     }
 
     public void scanOutBtnAction() {
+        Stage stage = new Stage();
+        Parent root = null;
 
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/scanDialog.fxml"));
+            ScanInDialogController scanInDialogController = new ScanInDialogController();
+            loader.setController(scanInDialogController);
+            root = loader.load();
+            stage.setTitle("Select Input Source");
+            stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
+            stage.setResizable(true);
+            stage.show();
+
+            stage.setOnHiding(event -> {
+                File imageFile = scanInDialogController.getImageFile();
+                try {
+//                    scanController.AddTransaction(imageFile);
+//                    this.ListTransactions();
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void overviewBtnAction() throws IOException {
