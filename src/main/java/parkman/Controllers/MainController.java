@@ -57,6 +57,7 @@ public class MainController implements Initializable {
         itemHolder.getChildren().clear();
 
         for(Transaction transaction : tranasctions) {
+            transaction.getTotalPrice();
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/list_item.fxml"));
                 ListItemController ctrl = new ListItemController(transaction);

@@ -26,7 +26,7 @@ public class ScanOutDialogController {
     public RadioButton testPictureRadio;
     public RadioButton webcamRadio;
 
-    public Label loadingLabel;
+    public Label statusLabel;
 
     public File tempPng = new File("temp.png");
 
@@ -79,12 +79,20 @@ public class ScanOutDialogController {
     }
 
     public void ContinueButtonAction() {
-        loadingLabel.setOpacity(1);
+        statusLabel.setStyle("-fx-text-fill: black");
+        statusLabel.setText("Loading...");
 
+        new Thread(this::UpdateExitTime).start();
+    }
+
+    private void UpdateExitTime() {
         String selection = this.GetSelectedInput();
+
         if(selection == null) {
-            Stage stage = (Stage) continueButton.getScene().getWindow();
-            stage.close();
+            Platform.runLater(() -> {
+                Stage stage = (Stage) continueButton.getScene().getWindow();
+                stage.close();
+            });
             return;
         }
 
@@ -95,13 +103,23 @@ public class ScanOutDialogController {
 
         try {
             scanController.UpdateExit(imageFile);
-            mainController.ListTransactions();
 
-            Stage stage = (Stage) continueButton.getScene().getWindow();
-            stage.close();
+            Platform.runLater(() -> {
+                mainController.ListTransactions();
+                Stage stage = (Stage) continueButton.getScene().getWindow();
+                stage.close();
+            });
         } catch(Exception e) {
-            e.printStackTrace();
-        }
+            String[] split = e.getMessage().split(":");
 
+            if(split[0].equals("FXML")) {
+                Platform.runLater(() -> {
+                    statusLabel.setText(split[1]);
+                    statusLabel.setStyle("-fx-text-fill: red");
+                });
+            } else {
+                e.printStackTrace();
+            }
+        }
     }
 }

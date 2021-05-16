@@ -1,8 +1,11 @@
 package parkman.Models;
 
+import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Transaction {
     private int id;
@@ -107,9 +110,20 @@ public class Transaction {
         this.parkingSpot = parkingSpot;
     }
 
-//    public void getTotalPrice() {
-//        System.out.println(new Date(this.getRawExitTimestamp() - this.getRawEntranceTimestamp()));
-//    }
+    private static long getDateDiff(Timestamp oldTs, Timestamp newTs, TimeUnit timeUnit) {
+        long diffInMS = newTs.getTime() - oldTs.getTime();
+        return timeUnit.convert(diffInMS, TimeUnit.MILLISECONDS);
+    }
+
+    public float getTotalPrice() {
+        if (this.getEntranceTimestamp() != null && this.getExitTimestamp() != null) {
+            SimpleDateFormat formatter= new SimpleDateFormat("HH");
+            Date date = new Date(getDateDiff(this.getEntranceTimestamp(), this.getExitTimestamp(), TimeUnit.MILLISECONDS));
+
+            return Float.parseFloat(formatter.format(date)) * this.pricePerHour;
+        } else
+            return -1;
+    }
 
     @Override
     public String toString() {

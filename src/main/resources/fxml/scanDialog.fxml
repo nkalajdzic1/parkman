@@ -32,7 +32,7 @@
          </children>
       </GridPane>
       <Button fx:id="continueButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ContinueButtonAction" text="Continue" textAlignment="CENTER" />
-      <Label fx:id="loadingLabel" alignment="CENTER" contentDisplay="CENTER" opacity="0.0" text="Loading..." textAlignment="CENTER">
+      <Label fx:id="statusLabel" alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER">
          <VBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </VBox.margin></Label>

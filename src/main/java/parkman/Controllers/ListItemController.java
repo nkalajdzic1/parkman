@@ -19,7 +19,8 @@ public class ListItemController {
     public Label plateLabel;
     public Label enteanceDateLabel;
     public Label exitDateLabel;
-    public Label lblParkingSpot;
+    public Label parkingSportLabel;
+    public Label totalPriceLabel;
 
     private Transaction transaction;
 
@@ -34,8 +35,8 @@ public class ListItemController {
         plateLabel.setText(transaction.getPlateNumber());
         enteanceDateLabel.setText(transaction.getFormattedEnteranceTimestamp());
         exitDateLabel.setText(transaction.getExitTimestamp() == null ? "ACTIVE" : transaction.getFormattedExitTimestamp());
-        lblParkingSpot.setText(transaction.getParkingSpot());
-
+        parkingSportLabel.setText(transaction.getParkingSpot());
+        totalPriceLabel.setText(transaction.getTotalPrice() == -1 ? "-" : transaction.getTotalPrice() + "€");
     }
 
     public void getPlate() {
@@ -48,7 +49,7 @@ public class ListItemController {
         imageView.setPreserveRatio(true);
         alert.setWidth(200);
         alert.setGraphic(imageView);
-        alert.setHeaderText("Plate picture of the given car:");
+        alert.setHeaderText("Picture of the given car:");
         alert.setContentText("");
         alert.setTitle("Plate picture");
         alert.setWidth(200);
@@ -67,7 +68,7 @@ public class ListItemController {
         imageView.setFitWidth(200);
         imageView.setPreserveRatio(true);
         alert.setGraphic(imageView);
-        alert.setHeaderText("Car picture of the given car:");
+        alert.setHeaderText("Picture of the given car:");
         alert.setContentText("");
         alert.setTitle("Car picture");
         alert.setWidth(200);

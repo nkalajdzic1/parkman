@@ -6,14 +6,15 @@
 
 <AnchorPane prefHeight="27.0" prefWidth="600.0" style="-fx-border-color: #000000;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane prefHeight="46.0" prefWidth="635.0">
+      <GridPane prefHeight="46.0" prefWidth="700.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="147.0" minWidth="125.0" prefWidth="145.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="125.0" prefWidth="159.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="37.0" prefWidth="53.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="128.0" minWidth="66.0" prefWidth="128.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="152.0" minWidth="125.0" prefWidth="150.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="125.0" prefWidth="152.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="23.0" prefWidth="45.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="129.0" minWidth="37.0" prefWidth="71.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.0" minWidth="66.0" prefWidth="119.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -23,13 +24,14 @@
             <Label fx:id="plateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="92.0" text="A12-T-412" GridPane.columnIndex="1" />
             <Label fx:id="enteanceDateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="173.0" text="2021-05-13 01:58:10" textAlignment="CENTER" GridPane.columnIndex="2" />
             <Label fx:id="exitDateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="182.0" text="2021-05-13 01:58:10" GridPane.columnIndex="3" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0" GridPane.columnIndex="5">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0" GridPane.columnIndex="6">
                <children>
                   <Button fx:id="btnPlate" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#getPlate" text="Plate" />
                   <Button fx:id="btnCar" mnemonicParsing="false" onAction="#getCar" text="Car" />
                </children>
             </HBox>
-            <Label fx:id="lblParkingSpot" alignment="CENTER" contentDisplay="CENTER" prefHeight="28.0" prefWidth="78.0" text="A10" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Label fx:id="parkingSportLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="28.0" prefWidth="78.0" text="A10" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Label fx:id="totalPriceLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="72.0" text="Label" textAlignment="CENTER" GridPane.columnIndex="5" />
          </children>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

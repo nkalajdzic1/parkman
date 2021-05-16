@@ -52,10 +52,12 @@ public class ScanController {
         return null;
     }
 
-    public void AddTransaction(File imageFile) throws IOException, InterruptedException {
+    public void AddTransaction(File imageFile) throws Exception {
         byte[] imageBytes = imageFile == null ? GetWebcamImageBytes() : GetImageBytes(imageFile);
 
-        if(imageBytes == null) return;
+        if(imageBytes == null) {
+            throw new Exception("FXML:Image source not found!");
+        };
 
         int insertId = dao.addInitialTransaction(
                        new Transaction(
@@ -66,23 +68,31 @@ public class ScanController {
                         )
                     );
 
-        if(insertId == -1) return;;
+        if(imageBytes == null) {
+            throw new Exception("FXML:Failed to insert transaction in database!");
+        };
 
         String plateNumber = RunPythonInterpreter(insertId);
 
-        if(plateNumber == null) return;
+        if(plateNumber == null) {
+            throw new Exception("FXML:Plate number could not be extracted!");
+        };
 
         dao.updatePlateById(insertId, plateNumber);
     }
 
-    public void UpdateExit(File imageFile) throws IOException, InterruptedException {
+    public void UpdateExit(File imageFile) throws Exception {
         byte[] imageBytes = imageFile == null ? GetWebcamImageBytes() : GetImageBytes(imageFile);
 
-        if(imageBytes == null) return;
+        if(imageBytes == null) {
+            throw new Exception("FXML:Image source not found!");
+        };
 
         String plateNumber = RunPythonInterpreter(-1);
 
-        if(plateNumber == null) return;
+        if(plateNumber == null) {
+            throw new Exception("FXML:Plate number could not be extracted!");
+        };
 
         dao.updateExitTimestampQuery(plateNumber, new Timestamp(new Date().getTime()));
     }
@@ -110,13 +120,6 @@ public class ScanController {
                 p.destroy();
                 return split[1];
             }
-        }
-
-
-        BufferedReader bre = new BufferedReader(new InputStreamReader(p.getErrorStream()));
-
-        while ((line = bre.readLine()) != null) {
-            System.out.println(line);
         }
 
         bri.close();

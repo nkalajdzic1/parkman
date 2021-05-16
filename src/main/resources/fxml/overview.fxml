@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane prefHeight="382.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="parkman.Controllers.OverviewController">
+<GridPane prefHeight="382.0" prefWidth="553.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="parkman.Controllers.OverviewController">
   <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="60.0" prefWidth="60.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="366.0" minWidth="300.0" prefWidth="366.0" />
@@ -37,7 +37,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <Label fx:id="lblFreeSpot" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="203.0" text="Label&#10;&#10;" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
+      <Label fx:id="lblFreeSpot" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="565.0" text="Label&#10;&#10;" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets bottom="20.0" />
          </GridPane.margin>
