@@ -14,7 +14,7 @@ public class ParkmanDAO {
     private static ParkmanDAO instance;
     private Connection conn;
 
-    private PreparedStatement selectTransactionQuery, createInitialTransactionQuery, updatePlateByIdQuery, updateExitTimestampQuery;
+    private PreparedStatement selectTransactionQuery, createInitialTransactionQuery, updatePlateByIdQuery, updateExitTimestampQuery, deleteTransactionQuery;
 
     public static ParkmanDAO getInstance() {
         if (instance == null) instance = new ParkmanDAO();
@@ -38,6 +38,7 @@ public class ParkmanDAO {
             createInitialTransactionQuery = conn.prepareStatement("INSERT INTO \"transaction\" (carPhoto, entranceTimestamp, pricePerHour, parkingSpot) values (?, ?,  ?, ?);");
             updatePlateByIdQuery = conn.prepareStatement("UPDATE main.\"transaction\" SET plateNumber = ?, platePhoto = ? WHERE id = ?");
             updateExitTimestampQuery = conn.prepareStatement("UPDATE main.\"transaction\" SET exitTimestamp = ? WHERE plateNumber = ? AND exitTImestamp IS NULL");
+            deleteTransactionQuery = conn.prepareStatement("DELETE FROM main.\"transaction\" WHERE id = ?");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -113,9 +114,7 @@ public class ParkmanDAO {
             updatePlateByIdQuery.setBytes(2, Files.readAllBytes(new File("AI/src/output/output_final.png").toPath()));
             updatePlateByIdQuery.setInt(3, insertId);
 
-            updatePlateByIdQuery.execute();
-
-            return true;
+            return updatePlateByIdQuery.executeUpdate() > 0;
         } catch(SQLException | IOException e) {
             e.printStackTrace();
             return false;
@@ -127,9 +126,19 @@ public class ParkmanDAO {
             updateExitTimestampQuery.setTimestamp(1, exitTimestamp);
             updateExitTimestampQuery.setString(2, plateNumber);
 
-            updateExitTimestampQuery.execute();
-            return true;
+            return updateExitTimestampQuery.executeUpdate() > 0;
         } catch(SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean deleteTransaction(int insertId) {
+        try {
+            deleteTransactionQuery.setInt(1, insertId);
+
+            return deleteTransactionQuery.execute();
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }

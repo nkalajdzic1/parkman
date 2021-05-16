@@ -28,7 +28,7 @@ public class ScanInDialogController {
 
     public Label statusLabel;
 
-    public File tempPng = new File("temp.png");
+    public File tempPng = new File("temp/holder.png");
 
     private File selectedImgFile = null;
 

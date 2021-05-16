@@ -68,17 +68,19 @@ public class ScanController {
                         )
                     );
 
-        if(imageBytes == null) {
+        if(insertId == -1) {
             throw new Exception("FXML:Failed to insert transaction in database!");
         };
 
         String plateNumber = RunPythonInterpreter(insertId);
 
         if(plateNumber == null) {
+            dao.deleteTransaction(insertId);
             throw new Exception("FXML:Plate number could not be extracted!");
-        };
+        }
 
-        dao.updatePlateById(insertId, plateNumber);
+        if(!dao.updatePlateById(insertId, plateNumber))
+            throw new Exception("FXML: Failed to update plate with #ID" + insertId + "!");
     }
 
     public void UpdateExit(File imageFile) throws Exception {
@@ -94,7 +96,8 @@ public class ScanController {
             throw new Exception("FXML:Plate number could not be extracted!");
         };
 
-        dao.updateExitTimestampQuery(plateNumber, new Timestamp(new Date().getTime()));
+        if(!dao.updateExitTimestampQuery(plateNumber, new Timestamp(new Date().getTime())))
+            throw new Exception("FXML: Entrance record for that car does not exist!");
     }
 
     public String RunPythonInterpreter(int insertId) throws InterruptedException, IOException {
@@ -104,7 +107,7 @@ public class ScanController {
         if(insertId != -1)
             p = Runtime.getRuntime().exec("python ./AI/src/main.py INSERT " + databasePath + " " +  insertId);
         else
-            p = Runtime.getRuntime().exec("python ./AI/src/main.py UPDATE ./temp.png");
+            p = Runtime.getRuntime().exec("python ./AI/src/main.py UPDATE ./temp/holder.png");
 
         p.waitFor();
 

@@ -85,6 +85,7 @@ public class MainController implements Initializable {
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.setResizable(false);
             stage.showAndWait();
+            scanInDialogController.getImageFile().delete();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -105,6 +106,7 @@ public class MainController implements Initializable {
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
             stage.setResizable(false);
             stage.showAndWait();
+            scanOutDialogController.getImageFile().delete();
         } catch (IOException e) {
             e.printStackTrace();
         }

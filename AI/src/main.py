@@ -25,11 +25,10 @@ def buildOutput():
 
 def parsePicture(imageBytes):
     buildOutput()
-
-    Image.open(io.BytesIO(imageBytes)).save("temp.jpg")
+    Image.open(io.BytesIO(imageBytes)).save(ROOT_DIR + "/temp.jpg")
     
-    plate = predict_license_plate_number("temp.jpg")
-    os.remove("temp.jpg")
+    plate = predict_license_plate_number(ROOT_DIR + "/temp.jpg")
+    os.remove(ROOT_DIR + "/temp.jpg")
 
     return plate[1]
 
