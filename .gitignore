@@ -78,6 +78,9 @@ crashlytics-build.properties
 
 # Created by .ignore support plugin (hsz.mobi)
 
+#DB
+/db/
+
 #AI
 /AI/.vscode/
 /AI/src/__pycache__/
