@@ -1,7 +1,9 @@
 package parkman.DAO;
 
+import javafx.scene.image.Image;
 import parkman.Models.Transaction;
 
+import java.io.ByteArrayInputStream;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -9,7 +11,7 @@ public class ParkmanDAO {
     private static ParkmanDAO instance;
     private Connection conn;
 
-    private PreparedStatement selectTransactionQuery, createInitialTransactionQuery, updatePlateByIdQuery;
+    private PreparedStatement selectTransactionQuery, createInitialTransactionQuery, updatePlateByIdQuery, selectPlateImageByIdQuery, selectCarImageByIdQuery;
 
     public static ParkmanDAO getInstance() {
         if (instance == null) instance = new ParkmanDAO();
@@ -42,6 +44,8 @@ public class ParkmanDAO {
             selectTransactionQuery = conn.prepareStatement("SELECT * FROM main.\"transaction\";");
             createInitialTransactionQuery = conn.prepareStatement("INSERT INTO \"transaction\" (carPhoto, entranceTimestamp, pricePerHour, parkingSpot) values (?, ?,  ?, ?);");
             updatePlateByIdQuery = conn.prepareStatement("UPDATE main.\"transaction\" SET plateNumber = ? WHERE id = ?");
+            selectPlateImageByIdQuery = conn.prepareStatement("SELECT platePhoto FROM main. \"transaction\" WHERE id = ?");
+            selectCarImageByIdQuery = conn.prepareStatement("SELECT carPhoto FROM main. \"transaction\" WHERE id = ?");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -124,5 +128,33 @@ public class ParkmanDAO {
 
             return false;
         }
+    }
+
+    public Image getPlateImageById(int id) {
+        try {
+            selectPlateImageByIdQuery.setInt(1, id);
+            ResultSet rs = selectPlateImageByIdQuery.executeQuery();
+            byte[]  buffer = rs.getBytes(1);
+            if(buffer == null) return null;
+            return new Image(new ByteArrayInputStream(buffer));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public Image getCarPictureById(int id) {
+        try {
+            selectCarImageByIdQuery.setInt(1, id);
+            ResultSet rs = selectCarImageByIdQuery.executeQuery();
+            byte[]  buffer = rs.getBytes(1);
+            if(buffer == null) return null;
+            return new Image(new ByteArrayInputStream(buffer));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

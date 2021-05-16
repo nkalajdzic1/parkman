@@ -17,7 +17,8 @@ public class Main extends Application {
 
         Parent root = loader.load();
         primaryStage.setTitle("Parkman");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(new Scene(root, 750, 400));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

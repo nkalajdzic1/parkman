@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="786.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="126.0" />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="678.0" minWidth="10.0" prefWidth="624.0" />
@@ -23,16 +23,16 @@
                 <RowConstraints maxHeight="366.0" minHeight="10.0" prefHeight="320.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label alignment="CENTER" prefHeight="62.0" prefWidth="678.0" text="Transakcije" textAlignment="CENTER">
+                <Label alignment="CENTER" prefHeight="62.0" prefWidth="678.0" text="Transactions" textAlignment="CENTER">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <GridPane.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </GridPane.margin></Label>
-            <ScrollPane prefHeight="355.0" prefWidth="624.0" GridPane.rowIndex="2">
+            <ScrollPane maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="575.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="342.0" prefWidth="641.0">
+                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefWidth="575.0">
                      <children>
                             <VBox fx:id="itemHolder" layoutY="9.0" prefWidth="600.0" spacing="5.0" />
                      </children></AnchorPane>
@@ -40,21 +40,23 @@
             </ScrollPane>
                 <GridPane prefHeight="40.0" prefWidth="600.0" GridPane.rowIndex="1">
                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="41.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="551.0" minWidth="10.0" prefWidth="113.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="551.0" minWidth="10.0" prefWidth="172.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="551.0" minWidth="10.0" prefWidth="156.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="551.0" minWidth="10.0" prefWidth="121.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.0" minWidth="125.0" prefWidth="125.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.0" minWidth="125.0" prefWidth="125.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="120.0" prefWidth="120.0" />
                     </columnConstraints>
                     <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Label fx:id="idLabel" text="#ID" />
-                        <Label fx:id="plateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="113.0" text="Plate Number" GridPane.columnIndex="1" />
-                        <Label fx:id="enteanceDateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="173.0" text="Enterance Date Time" textAlignment="CENTER" GridPane.columnIndex="2" />
-                        <Label fx:id="exitDateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="182.0" text="Exit Date Time" GridPane.columnIndex="3" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="122.0" text="View Image" GridPane.columnIndex="4" />
+                        <Label fx:id="idLabel" text="#ID" GridPane.halignment="CENTER" />
+                        <Label fx:id="plateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="113.0" text="Plate Number" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                        <Label fx:id="enteanceDateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="173.0" text="Enterance Date Time" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                        <Label fx:id="exitDateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="110.0" text="Exit Date Time" textAlignment="CENTER" GridPane.columnIndex="3" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="122.0" text="View Image" textAlignment="CENTER" GridPane.columnIndex="5" GridPane.halignment="LEFT" />
+                  <Label fx:id="exitDateLabel1" alignment="CENTER" contentDisplay="CENTER" layoutX="270.0" layoutY="20.0" prefHeight="16.0" prefWidth="182.0" text="Parking spot" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
                     </children>
                     <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
