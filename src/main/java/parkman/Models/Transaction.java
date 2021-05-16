@@ -15,21 +15,21 @@ public class Transaction {
 
     private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 
-    public Transaction(int id, byte[] carPicture, byte[] platePicture, String plateNumber, Timestamp entranceTimestamp, Timestamp exitTimestamp, float pricePerHour, String employeeName) {
+    public Transaction(int id, byte[] carPicture, byte[] platePicture, String plateNumber, Timestamp entranceTimestamp, Timestamp exitTimestamp, float pricePerHour, String parkingSpot) {
         this.id = id;
         this.carPicture = carPicture;
         this.platePicture = platePicture;
         this.plateNumber = plateNumber;
         this.entranceTimestamp = entranceTimestamp;
         this.exitTimestamp = exitTimestamp;
-        this.parkingSpot = employeeName;
+        this.parkingSpot = parkingSpot;
         this.pricePerHour = pricePerHour;
     }
 
-    public Transaction(byte[] carPicture, Timestamp entranceTimestamp, float pricePerHour, String employeeName) {
+    public Transaction(byte[] carPicture, Timestamp entranceTimestamp, float pricePerHour, String parkingSpot) {
         this.carPicture = carPicture;
         this.entranceTimestamp = entranceTimestamp;
-        this.parkingSpot = employeeName;
+        this.parkingSpot = parkingSpot;
         this.pricePerHour = pricePerHour;
     }
 
