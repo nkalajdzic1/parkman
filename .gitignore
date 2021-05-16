@@ -85,6 +85,7 @@ crashlytics-build.properties
 #AI
 /AI/.vscode/
 /AI/src/__pycache__/
+/AI/src/output/
 /AI/src/modules/__pycache/
 
 #Jython
