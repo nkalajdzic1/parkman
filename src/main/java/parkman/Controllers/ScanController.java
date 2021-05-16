@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class ScanController {
 
@@ -27,7 +28,7 @@ public class ScanController {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
         try {
-            ImageIO.write(webcam.getImage(), "jpeg", baos);
+            ImageIO.write(webcam.getImage(), "png", baos);
             webcam.close();
             return baos.toByteArray();
         } catch (IOException e) {
@@ -42,7 +43,7 @@ public class ScanController {
         try {
             BufferedImage bImage = ImageIO.read(imageFile);
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            ImageIO.write(bImage, "jpg", bos);
+            ImageIO.write(bImage, "png", bos);
             return bos.toByteArray();
         } catch(Exception e) {
             e.printStackTrace();
@@ -61,7 +62,7 @@ public class ScanController {
                             imageBytes,
                             new Timestamp(System.currentTimeMillis()),
                             2.4f,
-                            "test"
+                            OverviewController.GetFirstEmptySpot(dao.getTransactions())
                         )
                     );
 
@@ -74,10 +75,26 @@ public class ScanController {
         dao.updatePlateById(insertId, plateNumber);
     }
 
+    public void UpdateExit(File imageFile) throws IOException, InterruptedException {
+        byte[] imageBytes = imageFile == null ? GetWebcamImageBytes() : GetImageBytes(imageFile);
+
+        if(imageBytes == null) return;
+
+        String plateNumber = RunPythonInterpreter(-1);
+
+        if(plateNumber == null) return;
+
+        dao.updateExitTimestampQuery(plateNumber, new Timestamp(new Date().getTime()));
+    }
+
     public String RunPythonInterpreter(int insertId) throws InterruptedException, IOException {
         String databasePath = new File("db/parkmanDb.sqlite").getPath();
+        Process p;
 
-        Process p = Runtime.getRuntime().exec("python  ./AI/src/main.py " + databasePath + " " +  insertId);
+        if(insertId != -1)
+            p = Runtime.getRuntime().exec("python ./AI/src/main.py INSERT " + databasePath + " " +  insertId);
+        else
+            p = Runtime.getRuntime().exec("python ./AI/src/main.py UPDATE ./temp.png");
 
         p.waitFor();
 
@@ -86,13 +103,20 @@ public class ScanController {
         String line ;
         while ((line = bri.readLine()) != null) {
             String[] split = line.split(":");
+
             if(split[0].equals("SUCCESS")) {
                 bri.close();
                 p.waitFor();
                 p.destroy();
-
                 return split[1];
             }
+        }
+
+
+        BufferedReader bre = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+
+        while ((line = bre.readLine()) != null) {
+            System.out.println(line);
         }
 
         bri.close();

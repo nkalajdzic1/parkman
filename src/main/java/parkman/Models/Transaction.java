@@ -2,6 +2,7 @@ package parkman.Models;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Transaction {
     private int id;
@@ -12,6 +13,7 @@ public class Transaction {
     private Timestamp exitTimestamp;
     private float pricePerHour;
     private String parkingSpot;
+    private float totalPrice;
 
     private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 
@@ -69,6 +71,10 @@ public class Transaction {
         return entranceTimestamp;
     }
 
+    public float getRawEntranceTimestamp() {
+        return Float.parseFloat(exitTimestamp.toString());
+    }
+
     public String getFormattedEnteranceTimestamp() { return sdf.format(entranceTimestamp); }
 
     public void setEntranceTimestamp(Timestamp entranceTimestamp) {
@@ -77,6 +83,10 @@ public class Transaction {
 
     public Timestamp getExitTimestamp() {
         return exitTimestamp;
+    }
+
+    public float getRawExitTimestamp() {
+        return Float.parseFloat(exitTimestamp.toString());
     }
 
     public String getFormattedExitTimestamp() { return sdf.format(exitTimestamp); }
@@ -96,6 +106,10 @@ public class Transaction {
     public void setParkingSpot(String parkingSpot) {
         this.parkingSpot = parkingSpot;
     }
+
+//    public void getTotalPrice() {
+//        System.out.println(new Date(this.getRawExitTimestamp() - this.getRawEntranceTimestamp()));
+//    }
 
     @Override
     public String toString() {

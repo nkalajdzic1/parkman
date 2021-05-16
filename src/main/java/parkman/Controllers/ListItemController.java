@@ -1,5 +1,6 @@
 package parkman.Controllers;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -50,7 +51,9 @@ public class ListItemController {
         alert.setHeaderText("Plate picture of the given car:");
         alert.setContentText("");
         alert.setTitle("Plate picture");
-
+        alert.setWidth(200);
+        alert.setHeight(200);
+        alert.setResizable(true);
         alert.showAndWait();
     }
 
@@ -61,11 +64,15 @@ public class ListItemController {
                 new Image("/img/photo_placeholder.png") :
                 new Image(new ByteArrayInputStream(transaction.getCarPicture())));
         imageView.setFitWidth(200);
+        imageView.setFitWidth(200);
         imageView.setPreserveRatio(true);
         alert.setGraphic(imageView);
         alert.setHeaderText("Car picture of the given car:");
         alert.setContentText("");
         alert.setTitle("Car picture");
+        alert.setWidth(200);
+        alert.setHeight(200);
+        alert.setResizable(true);
         alert.showAndWait();
     }
 

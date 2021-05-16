@@ -63,7 +63,7 @@ def segment_characters(image_url):
     
     ax1.imshow(possible_final_images[wanted_image_index],  cmap="gray")
     images = next(os.walk(ROOT_DIR + '/output'))[2]
-    plt.savefig(f""+ ROOT_DIR + "/output/output_{len(images)}.png", bbox_inches='tight', pad_inches=0, dpi=200)
+    plt.savefig(f""+ ROOT_DIR + "/output/output_final.png", bbox_inches='tight', pad_inches=0, dpi=200)
     # plt.show()
     column_list_array.sort(key=lambda x: len(x))
     characters = characters_array[-1]

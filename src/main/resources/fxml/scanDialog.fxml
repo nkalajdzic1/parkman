@@ -7,20 +7,28 @@
 
 <VBox alignment="CENTER" prefHeight="300.0" prefWidth="500.0" spacing="10.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="500.0">
+      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="244.0" prefWidth="500.0">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="259.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="235.0" minHeight="10.0" prefHeight="208.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="259.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="259.0" minHeight="10.0" prefHeight="189.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="235.0" minHeight="10.0" prefHeight="35.0" valignment="CENTER" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-             <ImageView fx:id="testPictureFrame" fitHeight="225.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
-             <Button fx:id="testPictureBtn" mnemonicParsing="false" onAction="#testPictureBtnAction" text="Pick Test Picture" />
-             <ImageView fitHeight="226.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-             <Button mnemonicParsing="false" text="Use Webcam Feed" GridPane.columnIndex="1" />
+             <ImageView fx:id="testPictureFrame" fitHeight="185.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
+             <Button fx:id="testPictureBtn" mnemonicParsing="false" onAction="#testPictureBtnAction" text="Pick Test Picture" GridPane.rowIndex="2" />
+             <ImageView fitHeight="190.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <RadioButton fx:id="testPictureRadio" mnemonicParsing="false" onAction="#TestPictureRadioAction" text="Use Test Picture">
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+               </GridPane.margin></RadioButton>
+            <RadioButton fx:id="webcamRadio" mnemonicParsing="false" onAction="#WebcamRadioAction" text="Use Webcam Input" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+               </GridPane.margin></RadioButton>
          </children>
       </GridPane>
       <Button fx:id="continueButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ContinueButtonAction" text="Continue" textAlignment="CENTER" />

@@ -33,13 +33,18 @@ def parsePicture(imageBytes):
 
     return plate[1]
 
+def getBytesFromPath(path):
+    with open(sys.argv[2], 'rb') as f:
+        return f.read();
 
 print(
     "SUCCESS:" + 
     parsePicture(
         get_transaction_car_photo(
-            sys.argv[1],
-            sys.argv[2]
-        )
+            sys.argv[2],
+            sys.argv[3]
+        ) if sys.argv[1] == "INSERT" 
+        else
+            getBytesFromPath(sys.argv[2])
     )
 )

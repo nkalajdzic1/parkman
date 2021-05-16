@@ -19,6 +19,7 @@ import static org.python.google.common.collect.FluentIterable.from;
 public class OverviewController implements Initializable {
     private ParkmanDAO dao;
     private ArrayList<Transaction> transactions;
+    private String firstAvailableCache;
 
     public GridPane gridPaneParking;
     public Label lblFreeSpot;
@@ -75,9 +76,37 @@ public class OverviewController implements Initializable {
             letter = 'A';
         }
 
+        firstAvailableCache = firstAvaible;
         lblFreeSpot.setText("First avaible spot is " + firstAvaible + ".");
         lblFreeSpot.setStyle("-fx-font-weight: bold;");
-
     }
 
+    public static String GetFirstEmptySpot(ArrayList<Transaction> transactions) {
+        char letter = 'A';
+        char number = '1';
+
+        for (int i = 1; i < 7; i++) {
+            for (int j = 1; j < 7; j++) {
+                String parking = "";
+                parking += letter;
+                parking += number;
+
+                String finalParking = parking;
+                Collection<Transaction> coll = from(transactions).filter(x -> {
+                    assert x != null;
+                    return x.getExitTimestamp() == null && x.getParkingSpot().equals(finalParking);
+                }).toList();
+
+                if (coll.isEmpty()) {
+                    return Character.toString(letter) + number;
+                }
+
+                ++letter;
+            }
+            ++number;
+            letter = 'A';
+        }
+
+        return "null";
+    }
 }

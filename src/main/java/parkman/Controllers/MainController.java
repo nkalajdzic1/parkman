@@ -5,11 +5,13 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import parkman.DAO.ParkmanDAO;
 
 import java.util.ResourceBundle;
@@ -41,12 +43,16 @@ public class MainController implements Initializable {
         scanController = new ScanController();
     }
 
+    public MainController getInstance() {
+        return this;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.ListTransactions();
     }
 
-    private void ListTransactions() {
+    public void ListTransactions() {
         tranasctions = dao.getTransactions();
         itemHolder.getChildren().clear();
 
@@ -67,25 +73,17 @@ public class MainController implements Initializable {
         Stage stage = new Stage();
         Parent root = null;
 
+        //SCAN IN
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/scanDialog.fxml"));
-            ScanInDialogController scanInDialogController = new ScanInDialogController();
+            ScanInDialogController scanInDialogController = new ScanInDialogController(this);
             loader.setController(scanInDialogController);
             root = loader.load();
             stage.setTitle("Select Input Source");
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            stage.setResizable(true);
-            stage.show();
-
-            stage.setOnHiding(event -> {
-                File imageFile = scanInDialogController.getImageFile();
-                try {
-                    scanController.AddTransaction(imageFile);
-                    this.ListTransactions();
-                } catch(Exception e) {
-                    e.printStackTrace();
-                }
-            });
+            stage.setResizable(false);
+            stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -95,25 +93,17 @@ public class MainController implements Initializable {
         Stage stage = new Stage();
         Parent root = null;
 
+        //SCAN OUT
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/scanDialog.fxml"));
-            ScanInDialogController scanInDialogController = new ScanInDialogController();
-            loader.setController(scanInDialogController);
+            ScanOutDialogController scanOutDialogController = new ScanOutDialogController(this);
+            loader.setController(scanOutDialogController);
             root = loader.load();
             stage.setTitle("Select Input Source");
             stage.setScene(new Scene(root, USE_COMPUTED_SIZE, USE_COMPUTED_SIZE));
-            stage.setResizable(true);
-            stage.show();
-
-            stage.setOnHiding(event -> {
-                File imageFile = scanInDialogController.getImageFile();
-                try {
-//                    scanController.AddTransaction(imageFile);
-//                    this.ListTransactions();
-                } catch(Exception e) {
-                    e.printStackTrace();
-                }
-            });
+            stage.setResizable(false);
+            stage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -126,6 +116,10 @@ public class MainController implements Initializable {
         Parent root  = loader.load();
         stage.setTitle("Overview");
         stage.setScene(new Scene(root, 500, 500));
+        stage.setMinHeight(500);
+        stage.setMaxHeight(500);
+        stage.setMinWidth(500);
+        stage.setMinHeight(500);
         stage.setResizable(false);
         stage.show();
     }
