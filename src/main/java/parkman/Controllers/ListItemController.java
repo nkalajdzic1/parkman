@@ -40,16 +40,10 @@ public class ListItemController {
     public void getPlate() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         ImageView imageView = new ImageView();
-
-        byte[]  buffer = transaction.getPlatePicture();
-        if(buffer != null) {
-            Image img = new Image(new ByteArrayInputStream(buffer));
-            imageView.setImage(img);
-        }
-
+        imageView.setImage(new Image(new ByteArrayInputStream(transaction.getPlatePicture())));
         imageView.setFitWidth(200);
         imageView.setPreserveRatio(true);
-
+        alert.setWidth(200);
         alert.setGraphic(imageView);
         alert.setHeaderText("Plate picture of the given car:");
         alert.setContentText("");
@@ -61,7 +55,7 @@ public class ListItemController {
     public void getCar() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         ImageView imageView = new ImageView();
-        imageView.setImage(dao.getCarPictureById(transaction.getId()));
+        imageView.setImage(new Image(new ByteArrayInputStream(transaction.getCarPicture())));
         imageView.setFitWidth(200);
         imageView.setPreserveRatio(true);
         alert.setGraphic(imageView);

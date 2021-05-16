@@ -1,7 +1,9 @@
 package parkman.Controllers;
 
 import com.github.sarxos.webcam.Webcam;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.stage.Stage;
 import parkman.DAO.ParkmanDAO;
 import parkman.Models.Transaction;
 

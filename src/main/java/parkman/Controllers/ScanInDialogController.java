@@ -1,10 +1,13 @@
 package parkman.Controllers;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -18,6 +21,8 @@ public class ScanInDialogController {
     public Button testPictureBtn;
     public Button cameraaFeedBtm;
     public File tempPng = new File("temp.png");
+    public Button continueButton;
+    public Label loadingLabel;
 
     private File selectedImgFile = null;
 
@@ -43,11 +48,18 @@ public class ScanInDialogController {
             BufferedImage bufferedImage = ImageIO.read(selectedImgFile);
             ImageIO.write(bufferedImage, "png", tempPng);
             testPictureFrame.setImage(new Image(tempPng.toURI().toURL().toString()));
+            selectedImgFile = tempPng;
         }
     }
-//        try {
-//        scanController.AddTransaction();
-//    } catch (Exception e) {
-//        e.printStackTrace();
-//    }
+
+    public void ContinueButtonAction() {
+        loadingLabel.setOpacity(1);
+        new Thread(() -> {
+            Platform.runLater(() -> {
+                Stage stage = (Stage) continueButton.getScene().getWindow();
+                stage.hide();
+            });
+        }).start();
+
+    }
 }

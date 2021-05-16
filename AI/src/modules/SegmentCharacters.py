@@ -9,7 +9,7 @@ import matplotlib.patches as patches
 import matplotlib.pyplot as plt
 
 from modules.DetectPlate import detect_plate
-
+from definitions import ROOT_DIR
 
 def segment_characters(image_url):
     characters_array = []
@@ -60,10 +60,10 @@ def segment_characters(image_url):
     temp = np.argsort(characters_length_array)
     wanted_image_index = temp[-1]
     characters_array.sort(key=lambda x: len(x))
-
+    
     ax1.imshow(possible_final_images[wanted_image_index],  cmap="gray")
-    images = next(os.walk('output'))[2]
-    plt.savefig(f"output/output_{len(images)}.png", bbox_inches='tight', pad_inches=0, dpi=200)
+    images = next(os.walk(ROOT_DIR + '/output'))[2]
+    plt.savefig(f""+ ROOT_DIR + "/output/output_{len(images)}.png", bbox_inches='tight', pad_inches=0, dpi=200)
     # plt.show()
     column_list_array.sort(key=lambda x: len(x))
     characters = characters_array[-1]

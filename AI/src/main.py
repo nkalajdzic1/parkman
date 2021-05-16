@@ -11,7 +11,7 @@ from PIL import Image
 from definitions import ROOT_DIR
 
 def buildOutput():
-    dir_name = 'output'
+    dir_name = ROOT_DIR + '/output'
     
     if not os.path.exists(dir_name):
         os.makedirs(dir_name)
