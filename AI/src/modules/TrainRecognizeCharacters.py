@@ -54,7 +54,7 @@ def train():
     #
     # training_dataset_dir = os.path.join(current_dir, 'train')
     print('reading data')
-    training_dataset_dir = './train20X20'
+    training_dataset_dir = ROOT_DIR + '/train20X20'
     image_data, target_data = read_training_data(training_dataset_dir)
     print('reading data completed')
 

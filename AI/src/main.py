@@ -25,12 +25,16 @@ def buildOutput():
 
 def parsePicture(imageBytes):
     buildOutput()
-    Image.open(io.BytesIO(imageBytes)).save(ROOT_DIR + "/temp.jpg")
-    
-    plate = predict_license_plate_number(ROOT_DIR + "/temp.jpg")
-    os.remove(ROOT_DIR + "/temp.jpg")
 
-    return plate[1]
+    Image.open(io.BytesIO(imageBytes)).save(ROOT_DIR + "/temp.png")
+    plate = predict_license_plate_number(ROOT_DIR + "/temp.png")
+    os.remove(ROOT_DIR + "/temp.png")
+    
+    if(len(plate[1]) == 0):
+        raise Exception("")
+
+    output = plate[1].replace("Z", "2")
+    return output
 
 def getBytesFromPath(path):
     with open(sys.argv[2], 'rb') as f:

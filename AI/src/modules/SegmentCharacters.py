@@ -15,12 +15,12 @@ def segment_characters(image_url):
     characters_array = []
     column_list_array = []
     possible_final_images = []
-
-    for lp in detect_plate(open(image_url, 'rb')):
+   
+    for lp in detect_plate(image_url):
         license_plate = np.invert(lp)
-
+       
         labelled_plate = measure.label(license_plate)
-
+       
         fig, ax1 = plt.subplots(1)
         ax1.imshow(license_plate, cmap="gray")
         possible_final_images.append(license_plate)
@@ -52,7 +52,7 @@ def segment_characters(image_url):
 
         column_list_array.append(possible_column_list)
         characters_array.append(possible_characters)
-
+    
     characters_length_array = []
     for c in characters_array:
         characters_length_array.append(len(c))

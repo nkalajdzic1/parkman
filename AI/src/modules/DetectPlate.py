@@ -16,7 +16,7 @@ def detect_plate(image_url):
     binary_car_image = gray_car_image > threshold_value
     # print(binary_car_image)
     ax2.imshow(binary_car_image, cmap="gray")
-    plt.savefig(f"{ROOT_DIR}/output/output_{counter}.png", bbox_inches='tight', pad_inches=0, dpi=200)
+    plt.savefig(f"" + ROOT_DIR +"/output/output_" + str(counter) + ".png", bbox_inches='tight', pad_inches=0, dpi=200)
     counter = counter + 1
 
     # ax2.imshow(gray_car_image, cmap="gray")
@@ -78,7 +78,7 @@ def detect_plate(image_url):
             ax1.add_patch(rectBorder)
             # let's draw a red rectangle over those regions
     if (flag == 1):
-        plt.savefig(f"{ROOT_DIR}/output/output_{counter}.png", bbox_inches='tight', pad_inches=0, dpi=200)
+        plt.savefig(f"" + ROOT_DIR + "/output/output_" + str(counter) +".png", bbox_inches='tight', pad_inches=0, dpi=200)
         counter = counter + 1
 
         # print(plate_like_objects[0])
@@ -121,7 +121,7 @@ def detect_plate(image_url):
             ax1.add_patch(rectBorder)
             # let's draw a red rectangle over those regions
         # print(plate_like_objects[0])
-    plt.savefig(f"{ROOT_DIR}/output/output_{counter}.png", bbox_inches='tight', pad_inches=0, dpi=200)
+    plt.savefig(f"" + ROOT_DIR + "/output/output_" + str(counter) + ".png", bbox_inches='tight', pad_inches=0, dpi=200)
 
     # plt.show()
     return plate_like_objects
