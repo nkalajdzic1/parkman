@@ -40,7 +40,9 @@ public class ListItemController {
     public void getPlate() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         ImageView imageView = new ImageView();
-        imageView.setImage(new Image(new ByteArrayInputStream(transaction.getPlatePicture())));
+        imageView.setImage(transaction.getPlatePicture() == null ?
+                new Image("/img/photo_placeholder.png") :
+                new Image(new ByteArrayInputStream(transaction.getPlatePicture())));
         imageView.setFitWidth(200);
         imageView.setPreserveRatio(true);
         alert.setWidth(200);
@@ -55,7 +57,9 @@ public class ListItemController {
     public void getCar() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         ImageView imageView = new ImageView();
-        imageView.setImage(new Image(new ByteArrayInputStream(transaction.getCarPicture())));
+        imageView.setImage(transaction.getCarPicture() == null ?
+                new Image("/img/photo_placeholder.png") :
+                new Image(new ByteArrayInputStream(transaction.getCarPicture())));
         imageView.setFitWidth(200);
         imageView.setPreserveRatio(true);
         alert.setGraphic(imageView);
