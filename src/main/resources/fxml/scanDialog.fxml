@@ -20,7 +20,7 @@
          <children>
              <ImageView fx:id="testPictureFrame" fitHeight="185.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
              <Button fx:id="testPictureBtn" mnemonicParsing="false" onAction="#testPictureBtnAction" text="Pick Test Picture" GridPane.rowIndex="2" />
-             <ImageView fitHeight="190.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+             <ImageView fx:id="webcamFeedFrame" blendMode="SRC_ATOP" cache="true" cacheHint="SPEED" fitHeight="185.0" fitWidth="250.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <RadioButton fx:id="testPictureRadio" mnemonicParsing="false" onAction="#TestPictureRadioAction" text="Use Test Picture">
                <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />

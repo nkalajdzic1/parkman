@@ -29,6 +29,8 @@ public class ScanController {
 
         try {
             ImageIO.write(webcam.getImage(), "png", baos);
+            File outputfile = new File("image.jpg");
+            ImageIO.write(webcam.getImage(), "jpg", outputfile);
             webcam.close();
             return baos.toByteArray();
         } catch (IOException e) {

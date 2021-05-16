@@ -1,6 +1,9 @@
 package parkman.Controllers;
 
+import com.github.sarxos.webcam.Webcam;
 import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,7 +21,7 @@ import java.io.IOException;
 public class ScanOutDialogController {
     @FXML
     public ImageView testPictureFrame;
-    public ImageView cameraFeedFrame;
+    public ImageView webcamFeedFrame;
 
     public Button testPictureBtn;
     public Button continueButton;
@@ -35,6 +38,9 @@ public class ScanOutDialogController {
     private MainController mainController;
     private ScanController scanController = new ScanController();
 
+    Webcam webcam;
+    Thread webcamThread;
+
     public ScanOutDialogController(MainController _mainController) {
         this.mainController = _mainController;
     }
@@ -42,10 +48,50 @@ public class ScanOutDialogController {
     @FXML
     public void initialize() {
         testPictureFrame.setImage(new Image("/img/photo_placeholder.png"));
+
+        webcam = Webcam.getDefault();
+        webcam.open();
+
+        startWebCamStream();
     }
 
     public File getImageFile() {
         return selectedImgFile;
+    }
+
+    protected void startWebCamStream() {
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                while (true) {
+                    try {
+                        var grabbedImage = webcam.getImage();
+                        if (grabbedImage != null) {
+
+                            Platform.runLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    webcamFeedFrame.setImage(SwingFXUtils.toFXImage(grabbedImage, null));
+                                }
+                            });
+
+                            grabbedImage.flush();
+
+                        }
+                    } catch (Exception e) {
+                    } finally {
+
+                    }
+
+                }
+
+            }
+
+        };
+
+        webcamThread = new Thread(task);
+        webcamThread.setDaemon(true);
+        webcamThread.start();
     }
 
     public void testPictureBtnAction() throws IOException {
@@ -105,6 +151,8 @@ public class ScanOutDialogController {
             scanController.UpdateExit(imageFile);
 
             Platform.runLater(() -> {
+                webcam.close();
+                webcamThread.stop();
                 mainController.ListTransactions();
                 Stage stage = (Stage) continueButton.getScene().getWindow();
                 stage.close();
@@ -114,10 +162,12 @@ public class ScanOutDialogController {
 
             if(split[0].equals("FXML")) {
                 Platform.runLater(() -> {
+                    webcamThread.stop();
                     statusLabel.setText(split[1]);
                     statusLabel.setStyle("-fx-text-fill: red");
                 });
             } else {
+                webcamThread.stop();
                 e.printStackTrace();
             }
         }
