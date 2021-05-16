@@ -80,6 +80,7 @@ crashlytics-build.properties
 
 #DB
 /db/
+/db/parkmanDb.sqlites
 
 #AI
 /AI/.vscode/
