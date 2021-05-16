@@ -3,10 +3,12 @@ package parkman.Controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import parkman.DAO.ParkmanDAO;
 import parkman.Models.Transaction;
 
+import java.io.ByteArrayInputStream;
 
 
 public class ListItemController {
@@ -38,13 +40,21 @@ public class ListItemController {
     public void getPlate() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         ImageView imageView = new ImageView();
-        imageView.setImage(dao.getPlateImageById(transaction.getId()));
+
+        byte[]  buffer = transaction.getPlatePicture();
+        if(buffer != null) {
+            Image img = new Image(new ByteArrayInputStream(buffer));
+            imageView.setImage(img);
+        }
+
         imageView.setFitWidth(200);
         imageView.setPreserveRatio(true);
+
         alert.setGraphic(imageView);
         alert.setHeaderText("Plate picture of the given car:");
         alert.setContentText("");
         alert.setTitle("Plate picture");
+
         alert.showAndWait();
     }
 
